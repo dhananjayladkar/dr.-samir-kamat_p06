@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emergency Setup - Smart Roadside</title>
+  <link rel="stylesheet" href="getstarted.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">🚗 Roadside Lifeline</a>
+  <div class="nav-spacer"></div>
+  <a href="index.html" class="nav-back">← Back</a>
+</nav>
+
+<!-- MAIN SECTION -->
+<section class="emergency-setup">
+  <div class="container">
+    <div class="setup-card">
+      <div class="header">
+        <div class="icon">🚨</div>
+        <h1>Emergency Setup</h1>
+        <p class="subtitle">Configure your emergency contact & location</p>
+      </div>
+
+      <form onsubmit="sendEmergency(event)" class="form">
+        <div class="form-group">
+          <label for="contact">Emergency Contact Number</label>
+          <div class="input-wrapper">
+            <input 
+              id="contact" 
+              type="tel"
+              placeholder="Enter phone number"
+              required
+            >
+            <span class="input-icon">📞</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="issue">Emergency Type</label>
+          <select id="issue" required>
+            <option value="">Select emergency type</option>
+            <option value="accident">🚗 Accident</option>
+            <option value="engine">⚙️ Engine Problem</option>
+            <option value="tyre">🛞 Tyre Issue</option>
+            <option value="fuel">⛽ Fuel Problem</option>
+            <option value="electrical">⚡ Electrical Issue</option>
+            <option value="other">❓ Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lat">Latitude</label>
+            <div class="input-wrapper">
+              <input 
+                id="lat" 
+                type="number"
+                step="0.000001"
+                placeholder="Latitude"
+                required
+              >
+              <span class="input-icon">📍</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lng">Longitude</label>
+            <div class="input-wrapper">
+              <input 
+                id="lng" 
+                type="number"
+                step="0.000001"
+                placeholder="Longitude"
+                required
+              >
+              <span class="input-icon">📍</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-location" onclick="getLocation()">
+          📍 Get My Location
+        </button>
+
+        <button type="submit" class="btn primary">
+          🚨 SEND EMERGENCY ALERT
+        </button>
+
+        <p class="info-text">
+          ℹ️ Your emergency will be sent to the nearest mechanic within seconds.
+        </p>
+      </form>
+
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BACKGROUND ELEMENTS -->
+<div class="bg-element bg-1"></div>
+<div class="bg-element bg-2"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="js/supabase.js"></script>
+<script src="getstarted.js"></script>
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      document.getElementById('lat').value = position.coords.latitude.toFixed(6);
+      document.getElementById('lng').value = position.coords.longitude.toFixed(6);
+      showStatus('📍 Location updated!', 'success');
+    }, function() {
+      showStatus('❌ Unable to get location', 'error');
+    });
+  } else {
+    showStatus('❌ Geolocation not supported', 'error');
+  }
+}
+
+function showStatus(message, type) {
+  const statusEl = document.getElementById('status');
+  statusEl.textContent = message;
+  statusEl.className = 'status ' + type;
+  setTimeout(() => {
+    statusEl.textContent = '';
+    statusEl.className = 'status';
+  }, 3000);
+}
+</script>
+</html>

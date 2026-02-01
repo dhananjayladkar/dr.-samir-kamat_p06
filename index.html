@@ -1,20 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Backend Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Roadside Assistance</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<button onclick="signup('test@gmail.com','12345678')">Signup</button>
-<button onclick="login('test@gmail.com','12345678')">Login</button>
+<!-- NAV -->
+<nav class="nav">
+  <div class="logo">Roadside</div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#benefits">Who Benefits</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <a class="cta" href="login.html">login</a>
+    <a class="cta secondary" href="signup.html">signup</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="pill">Advanced Safety Technology</span>
+    <h1>Your Safety,<br/><span>Always Within Reach</span></h1>
+    <p>
+      Smart roadside assistance with automatic accident detection,
+      real-time location tracking and nearest mechanic dispatch.
+    </p>
+    <div class="hero-actions">
+      <a href="#.html" class="btn primary">Get Started</a>
+      <a href="getstarted.html" class="btn ghost">Emergency Alert</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>24/7</b><span>Protection</span></div>
+      <div><b>30s</b><span>Auto Alerts</span></div>
+      <div><b>GPS</b><span>Live Tracking</span></div>
+    </div>
+  </div>
+  <div class="hero-img">
+   
+  </div>
+</section>
+
+
+<section class="opportunity">
+  <h2>The Opportunity Gap</h2>
+  <div class="cards">
+    <div class="stat"><b>68%</b><p>People feel unsafe during roadside emergencies</p></div>
+    <div class="stat"><b>60%</b><p>Breakdowns happen far from help</p></div>
+    <div class="stat"><b>350K+</b><p>Road incidents annually outside cities</p></div>
+  </div>
+  <p class="note">
+    Current solutions are slow and manual. Our system bridges the gap with
+    instant alerts and automated response.
+  </p>
+</section>
+
+
+<section id="features" class="features">
+  <h2>Comprehensive Protection Features</h2>
+  <p class="sub">Everything you need for complete peace of mind</p>
+  <div class="grid">
+    <div class="card">🚨 <h3>Emergency Alert</h3><p>One-tap alert sends live location instantly.</p></div>
+    <div class="card">📍 <h3>Live GPS</h3><p>Real-time tracking on admin dashboard.</p></div>
+    <div class="card">🧑‍🔧 <h3>Auto Assignment</h3><p>Nearest mechanic dispatched automatically.</p></div>
+    <div class="card">🔊 <h3>30-Second Log</h3><p>Critical event logging for evidence.</p></div>
+    <div class="card">🔋 <h3>Reliable Power</h3><p>Low-power, dependable operation.</p></div>
+    <div class="card">🔒 <h3>Secure Access</h3><p>Role-based access & RLS.</p></div>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <h2>How It Works</h2>
+  <p class="sub">From alert to rescue in four steps</p>
+  <div class="steps">
+    <div class="step"><span>1</span><h4>Alert Triggered</h4><p>Manual or sensor-based trigger</p></div>
+    <div class="step"><span>2</span><h4>Data Transmitted</h4><p>Location & severity sent to cloud</p></div>
+    <div class="step"><span>3</span><h4>Contacts Notified</h4><p>Admin receives instant alert</p></div>
+    <div class="step"><span>4</span><h4>Help Arrives</h4><p>Mechanic dispatched via GPS</p></div>
+  </div>
+</section>
+
+<div class="map-box">
+  <iframe
+    src="https://www.openstreetmap.org/export/embed.html?bbox=79.0700%2C21.1300%2C79.1100%2C21.1600&layer=mapnik&marker=21.1458%2C79.0882"
+    style="border:0;"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<section id="benefits" class="benefits">
+  <h2>Who Benefits</h2>
+  <div class="cols">
+    <div class="box light">
+      <h3>Customer Pain Points</h3>
+      <ul>
+        <li>Delayed help during breakdowns</li>
+        <li>No live location visibility</li>
+        <li>Manual coordination</li>
+      </ul>
+    </div>
+    <div class="box dark">
+      <h3>Our Solution</h3>
+      <ul>
+        <li>Instant alerts & automation</li>
+        <li>Live GPS dashboard</li>
+        <li>Auto mechanic assignment</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="qa">
+    <div class="q">How does the alert work?</div>
+    <div class="a">Hardware or UI trigger sends location to cloud instantly.</div>
+  </div>
+  <div class="qa">
+    <div class="q">What if internet is unavailable?</div>
+    <div class="a">Alerts are queued and sent once connectivity resumes.</div>
+  </div>
+  <div class="qa">
+    <div class="q">Is data secure?</div>
+    <div class="a">Yes. Role-based access with row-level security.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="fcols">
+    <div>
+      <b>Roadside</b>
+      <p>Your safety, always within reach.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="#features">Features</a>
+      <a href="#how">How It Works</a>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <a href="#faq">FAQ</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <p class="copy">© 2026 Smart Roadside Assistance</p>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
-<script src="supabase.js"></script>
-<script src="auth.js"></script>
-<script src="user.js"></script>
-<script src="admin.js"></script>
-<script src="accident.js"></script>
-
+<script src="../js/supabase.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/user.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

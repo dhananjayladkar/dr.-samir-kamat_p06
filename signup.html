@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Roadside - Sign Up</title>
+<style>
+:root{
+  --red:#e53935; --dark:#0f0f12; --mid:#1a1a20; --txt:#eaeaf0;
+  --gradient-1: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+  --gradient-2: linear-gradient(135deg, #1b1b22 0%, #2a2a35 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter','Segoe UI',Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  background:var(--gradient-2);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  padding:20px;
+  position:relative;overflow:hidden;
+}
+body::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(229,57,53,0.1),transparent);
+  border-radius:50%;animation:float 20s infinite ease-in-out reverse
+}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,30px)}}
+.container{width:100%;max-width:480px;position:relative;z-index:2}
+.card{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  border-radius:20px;padding:40px;
+  box-shadow:0 30px 60px rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.1);
+  animation:slideIn .6s ease;
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.header{text-align:center;margin-bottom:32px}
+.logo{font-size:24px;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.tagline{font-size:13px;opacity:.8;color:#d0d0d8}
+
+.form-group{margin-bottom:18px}
+label{font-size:13px;opacity:.9;font-weight:500;display:block;margin-bottom:8px;color:#e0e0e0}
+input,select{
+  width:100%;padding:12px 14px;
+  border-radius:12px;border:1px solid rgba(255,255,255,.15);
+  outline:none;background:rgba(255,255,255,.06);
+  color:#fff;font-size:14px;
+  transition:all 0.3s ease;
+}
+input::placeholder,select::placeholder{color:#999}
+input:focus,select:focus{
+  border-color:var(--red);
+  background:rgba(255,255,255,.12);
+  box-shadow:0 0 12px rgba(229,57,53,0.3);
+}
+select option{color:#111;background:#222}
+
+.btn{
+  width:100%;padding:13px;margin-top:16px;
+  border:none;border-radius:12px;
+  background:var(--gradient-1);
+  color:#fff;font-size:15px;font-weight:600;
+  cursor:pointer;transition:all 0.3s ease;
+  box-shadow:0 6px 20px rgba(229,57,53,0.4);
+  position:relative;overflow:hidden;
+}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(255,255,255,0.2);transition:left 0.3s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(229,57,53,0.6)}
+.btn:hover::before{left:100%}
+.btn:active{transform:translateY(-1px)}
+
+.footer{text-align:center;margin-top:20px;font-size:13px;color:#d0d0d8}
+.footer a{color:var(--red);text-decoration:none;font-weight:600;transition:all 0.3s ease}
+.footer a:hover{opacity:.8}
+
+.info{text-align:center;font-size:12px;opacity:.8;margin-top:14px;color:#d0d0d8}
+.hidden{display:none}
+
+.back-link{display:inline-flex;align-items:center;gap:6px;color:#d0d0d8;text-decoration:none;margin-bottom:24px;font-size:13px;transition:all 0.3s ease}
+.back-link:hover{color:var(--red);transform:translateX(-4px)}
+
+.progress{display:flex;gap:8px;margin-bottom:24px;justify-content:center}
+.progress-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:all 0.3s ease}
+.progress-dot.active{background:var(--red);width:24px;border-radius:4px}
+
+@media(max-width:480px){
+  .card{padding:28px}
+  .header{margin-bottom:24px}
+  .logo{font-size:20px}
+  .btn{padding:11px;font-size:14px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <a href="index.html" class="back-link">← Back to Home</a>
+  <div class="card">
+    <div class="header">
+      <div class="logo">🚗 Roadside Lifeline</div>
+      <div class="tagline">Create your account</div>
+    </div>
+
+    <div class="progress">
+      <div class="progress-dot active" id="step1-dot"></div>
+      <div class="progress-dot" id="step2-dot"></div>
+    </div>
+
+    <form id="registerForm" onsubmit="sendOTP(event)">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="fullName" placeholder="Your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Create strong password" required>
+      </div>
+
+      <div class="form-group">
+        <label>Register as</label>
+        <select id="role" required>
+          <option value="">Select your role</option>
+          <option>User</option>
+          <option>Mechanic</option>
+          <option>Admin</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn">Create Account & Send OTP</button>
+    </form>
+
+    <form id="otpForm" class="hidden" onsubmit="verifyOTP(event)">
+      <div class="form-group">
+        <label>Enter OTP</label>
+        <input type="number" id="otpInput" placeholder="6-digit OTP" required>
+      </div>
+      <button type="submit" class="btn">Verify & Complete Registration</button>
+      <div class="info" id="otpInfo">Please check your email for the OTP</div>
+    </form>
+
+    <div class="footer">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<script>
+let generatedOTP;
+let userEmail;
+
+function sendOTP(e){
+  e.preventDefault();
+  userEmail = document.getElementById("email").value;
+  const fullName = document.getElementById("fullName").value;
+  
+  generatedOTP = Math.floor(100000 + Math.random() * 900000);
+
+  alert(
+    "📧 OTP Sent!\n\n" +
+    "Email: " + userEmail + "\n\n" +
+    "(Demo OTP: " + generatedOTP + ")"
+  );
+
+  document.getElementById("registerForm").classList.add("hidden");
+  document.getElementById("otpForm").classList.remove("hidden");
+  document.getElementById("step1-dot").classList.remove("active");
+  document.getElementById("step2-dot").classList.add("active");
+}
+
+function verifyOTP(e){
+  e.preventDefault();
+  const entered = document.getElementById("otpInput").value;
+
+  if(entered == generatedOTP){
+    alert("🎉 Registration Successful! Welcome to Roadside Lifeline");
+    window.location.href = "login.html";
+  } else {
+    alert("❌ Incorrect OTP. Please try again");
+  }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/auth.js"></script>
+</body>
+</html>
